@@ -209,7 +209,24 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 > 推进全球字符集大一统的两大组织：<br>
     (1) 国际标准化组织（ISO），他们于1984年创建ISO/IEC JTC1/SC2/WG2工作组，试图制定一份“通用字符集”（Universal Character Set，简称UCS），并最终制定了<b>ISO 10646标准</b>。<br>
-    (2) 统一码联盟，他们由Xerox、Apple等软件制造商于1988年组成，并且开发了<b>Unicode标准</b>（The Unicode Standard，这个前缀Uni 代表了 Universal，Unique， and Uniform）。<br>
+    (2) 统一码联盟，他们由Xerox、Apple等软件制造商于1988年组成，并且开发了<b>Unicode标准</b>（The Unicode Standard，这个前缀Uni 代表了 Universal，Unique， and Uniform）。<br><br>
     <b>1991年</b>前后，两个项目的参与者都认识到，世界不需要两个不兼容的字符集。于是，它们开始合并双方的工作成果，并为创立一个单一编码表而协同工作。<b>从Unicode 2.0开始，Unicode采用了与ISO 10646-1相同的字库和字码；ISO也承诺，ISO 10646将不会给超出U+10FFFF的UCS-4编码赋值，以使得两者保持一致</b>。两个项目仍都独立存在，并独立地公布各自的标准。不过由于Unicode这一名字比较好记，因而它使用更为广泛。
+<br>
 
-    
+##### 与Unicode相关的一系列重要概念
+> Code Point、Plane、BMP：<br>
+    在实际编码(考虑存储)之前先给每个穷举到的字符指定一个序号，即是<b>Code Point(码位)</b>，把它当做是数学概念，和用几个字节存储无关，只要发布Unicode 的标准化组织（ISO 和 统一码联盟）愿意，将新出现的字符继续向后编号就可以了，既然是数学序号，那就没有什么不够用的问题。<br>
+    在编号的过程中，标准化组织还将用到的数字编号(码位)进行了分区操作。从而引出了<b>Plane(平面)</b>的概念。即将256×256=65536个码位作为一个平面(一个二维平面，长宽均为256个编号)。<br>
+    此外，在对全球字符编号时有一些原则，就是将越常用的字符越靠前。所以，前65536个字符所构成的第一个Plane(平面)，这个平面就叫做<b>基本多文种平面（BMP - Basic Multilingual Plane）</b>。而大于BMP最大值的码位所构成的平面，就被称作<b>辅助平面</b>。并且ISO和统一码联盟为了兼容问题，协商确定<b>最多使用16个辅助平面</b>。 在BMP 里的字符，只要4位16进制数就可以表示。而在辅助平面内的字符是少需要6位16进制数表示(实际中UTF-8/16均使用8位16进制数进行编码)<br>
+    只为最常用的字符编号肯定是不行的，因为在某些特殊的场景之下，我们会用到那些不常用的字符。所以那些相对不常用的字符就被编号于辅助平面内。以下是辅助平面中16个平面的名称和编码范围：<br>
+
+|平面	|编码范围	|中文名称|英文名称|
+|:----:|:----:|:----:|:----:|
+|0号平面	|U+0000 - U+FFFF	|基本多文种平面	|Basic Multilingual Plane,简称BMP|
+|1号平面	|U+10000 - U+1FFFF	|多文种补充平面	|Supplementary Multilingual Plane,简称SMP|
+|2号平面	|U+20000 - U+2FFFF	|表意文字补充平面	|Supplementary Ideographic Plane,简称SIP|
+|3号平面	|U+30000 - U+3FFFF|	表意文字第三平面	|Tertiary Ideographic Plane,简称TIP|
+|4～13号平面	|U+40000 - U+DFFFF	|（尚未使用）	| | 
+|14号平面	|U+E0000 - U+EFFFF	|特别用途补充平面	|Supplementary Special-purpose Plane,简称SSP|
+|15号平面	|U+F0000 - U+FFFFF	|保留作为私人使用区（A区）|	Private Use Area-A,简称PUA-A|
+|16号平面	|U+100000 - U+10FFFF	|保留作为私人使用区（B区） | Private Use Area-B,简称PUA-B|
