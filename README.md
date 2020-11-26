@@ -71,6 +71,7 @@
 |62	|076	|3E	|00111110	|>		|Greater than|126	|176	|7E	|01111110	|~		|Equivalency sign (tilde)|
 |63	|077	|3F	|00111111	|?		|Question mark|127	|177	|7F	|01111111	|	  	|Delete|
 
+<br>
 
 > ANSI 字符集：所谓ANSI字符集并不是指某一种特殊的字符集。它实际上是指基于ASCII扩展而来的字符集的总称。
 就比如中国的GB2312(GBK、GB18030)和BIG5，日本的Shift-JIS，以及其他国家定义的ASCII扩展字符集。
@@ -191,6 +192,6 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 <br>
 
- UTF-8 BOM<br>
+ ###### UTF-8 BOM<br>
  UTF-8 BOM又叫UTF-8 签名，UTF-8不需要BOM来表明字节顺序，但可以用BOM来表明编码方式。当文本程序读取到以 EF BB BF开头的字节流时，就知道这是UTF-8编码了。Windows就是使用BOM来标记文本文件的编码方式的。<br>
 > "ZERO WIDTH NO-BREAK SPACE"字符(BOM)的Unicode码位为FEFF，所以对应的UTF-8编码为 EF BB BF。
