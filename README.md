@@ -4,136 +4,72 @@
 1. ASCII —— American Standard Code for Information Interchange: 美国信息交换标准代码
    ASCII第一次以规范标准的形式发表是在<b>1967年</b>，最后一次更新则是在<b>1986年</b>，到目前为止共定义了128个字符。这是最早出现的最原始的字符集。 其内容如下：<br>
 
-|DEC|	OCT	|HEX|	BIN	|缩写(符号)	|描述|
-|:----:|:----:|:----:|:----:|:----:|:----:|
-|0	|000	|00	|00000000	|NUL	|Null char (空字符)|
-|1	|001	|01	|00000001	|SOH	|Start of Heading (标题开始)|
-|2	|002	|02	|00000010	|STX	|Start of Text (正文开始)|
-|3	|003	|03	|00000011	|ETX	|End of Text (正文结束)|
-|4	|004	|04	|00000100	|EOT	|End of Transmission (传输结束)|
-|5	|005	|05	|00000101	|ENQ	|Enquiry (请求)|
-|6	|006	|06	|00000110	|ACK	|Acknowledgment (收到通知)|
-|7	|007	|07	|00000111	|BEL	|Bell (响铃)|
-|8	|010	|08	|00001000	|BS	|Back Space (退格)|
-|9	|011	|09	|00001001	|HT	|Horizontal Tab (水平制表符)|
-|10	|012	|0A	|00001010	|LF	|Line Feed (换行键)|
-|11	|013	|0B	|00001011	|VT	|Vertical Tab (垂直制表符)|
-|12	|014	|0C	|00001100	|FF	|Form Feed (换页键)|
-|13	|015	|0D	|00001101	|CR	|Carriage Return (回车键)|
-|14	|016	|0E	|00001110	|SO	|Shift Out / X-On (不用切换)|
-|15	|017	|0F	|00001111	|SI	|Shift In / X-Off (启用切换)|
-|16	|020	|10	|00010000	|DLE		|Data Line Escape (数据链路转义)|
-|17	|021	|11	|00010001	|DC1		|Device Control 1 (设备控制1)|
-|18	|022	|12	|00010010	|DC2		|Device Control 2 (设备控制2)|
-|19	|023	|13	|00010011	|DC3		|Device Control 3 (设备控制3)|
-|20	|024	|14	|00010100	|DC4		|Device Control 4 (设备控制4)|
-|21	|025	|15	|00010101	|NAK		|Negative Acknowledgement (拒绝接收)|
-|22	|026	|16	|00010110	|SYN		|Synchronous Idle (同步空闲)|
-|23	|027	|17	|00010111	|ETB		|End of Transmit Block (传输块结束)|
-|24	|030	|18	|00011000	|CAN		|Cancel (取消)|
-|25	|031	|19	|00011001	|EM	 	  |End of Medium (介质中断)|
-|26	|032	|1A	|00011010	|SUB		|Substitute (替补)|
-|27	|033	|1B	|00011011	|ESC		|Escape (溢出)|
-|28	|034	|1C	|00011100	|FS		|File Separator (文件分割符)|
-|29	|035	|1D	|00011101	|GS		|Group Separator (分组符)|
-|30	|036	|1E	|00011110	|RS		|Record Separator (记录分离符)|
-|31	|037	|1F	|00011111	|US	 	|Unit Separator (单元分隔符)|
-|32	|040	|20	|00100000	| 		|Space (空格)|
-|33	|041	|21	|00100001	|!		|Exclamation mark|
-|34	|042	|22	|00100010	|"		|Double quotes|
-|35	|043	|23	|00100011	|#		|Number|
-|36	|044	|24	|00100100	|$		|Dollar|
-|37	|045	|25	|00100101	|%		|Procenttecken|
-|38	|046	|26	|00100110	|&		|Ampersand|
-|39	|047	|27	|00100111	|'		|Single quote|
-|40	|050	|28	|00101000	|(		|Open parenthesis|
-|41	|051	|29	|00101001	|)		|Close parenthesis|
-|42	|052	|2A	|00101010	|*		|Asterisk|
-|43	|053	|2B	|00101011	|+		|Plus|
-|44	|054	|2C	|00101100	|,		|Comma|
-|45	|055	|2D	|00101101	|-		|Hyphen|
-|46	|056	|2E	|00101110	|.		|Period, dot or full stop|
-|47	|057	|2F	|00101111	|/		|Slash or divide|
-|48	|060	|30	|00110000	|0		|Zero|
-|49	|061	|31	|00110001	|1		|One|
-|50	|062	|32	|00110010	|2		|Two|
-|51	|063	|33	|00110011	|3		|Three|
-|52	|064	|34	|00110100	|4		|Four|
-|53	|065	|35	|00110101	|5		|Five|
-|54	|066	|36	|00110110	|6		|Six|
-|55	|067	|37	|00110111	|7		|Seven|
-|56	|070	|38	|00111000	|8		|Eight|
-|57	|071	|39	|00111001	|9		|Nine|
-|58	|072	|3A	|00111010	|:		|Colon|
-|59	|073	|3B	|00111011	|;		|Semicolon|
-|60	|074	|3C	|00111100	|<		|Less than|
-|61	|075	|3D	|00111101	|=		|Equals|
-|62	|076	|3E	|00111110	|>		|Greater than|
-|63	|077	|3F	|00111111	|?		|Question mark|
-|64	|100	|40	|01000000	|@		|At symbol|
-|65	|101	|41	|01000001	|A		|Uppercase A|
-|66	|102	|42	|01000010	|B		|Uppercase B|
-|67	|103	|43	|01000011	|C		|Uppercase C|
-|68	|104	|44	|01000100	|D		|Uppercase D|
-|69	|105	|45	|01000101	|E		|Uppercase E|
-|70	|106	|46	|01000110	|F		|Uppercase F|
-|71	|107	|47	|01000111	|G		|Uppercase G|
-|72	|110	|48	|01001000	|H		|Uppercase H|
-|73	|111	|49	|01001001	|I		|Uppercase I|
-|74	|112	|4A	|01001010	|J		|Uppercase J|
-|75	|113	|4B	|01001011	|K		|Uppercase K|
-|76	|114	|4C	|01001100	|L		|Uppercase L|
-|77	|115	|4D	|01001101	|M		|Uppercase M|
-|78	|116	|4E	|01001110	|N		|Uppercase N|
-|79	|117	|4F	|01001111	|O		|Uppercase O|
-|80	|120	|50	|01010000	|P		|Uppercase P|
-|81	|121	|51	|01010001	|Q		|Uppercase Q|
-|82	|122	|52	|01010010	|R		|Uppercase R|
-|83	|123	|53	|01010011	|S		|Uppercase S|
-|84	|124	|54	|01010100	|T		|Uppercase T|
-|85	|125	|55	|01010101	|U		|Uppercase U|
-|86	|126	|56	|01010110	|V		|Uppercase V|
-|87	|127	|57	|01010111	|W		|Uppercase W|
-|88	|130	|58	|01011000	|X		|Uppercase X|
-|89	|131	|59	|01011001	|Y		|Uppercase Y|
-|90	|132	|5A	|01011010	|Z		|Uppercase Z|
-|91	|133	|5B	|01011011	|[		|Opening bracket|
-|92	|134	|5C	|01011100	|\		|Backslash|
-|93	|135	|5D	|01011101	|]		|Closing bracket|
-|94	|136	|5E	|01011110	|^		|Caret - circumflex|
-|95	|137	|5F	|01011111	|_		|Underscore|
-|96	|140	|60	|01100000	|`		|Grave accent|
-|97	|141	|61	|01100001	|a		|Lowercase a|
-|98	|142	|62	|01100010	|b		|Lowercase b|
-|99	|143	|63	|01100011	|c		|Lowercase c|
-|100	|144	|64	|01100100	|d		|Lowercase d|
-|101	|145	|65	|01100101	|e		|Lowercase e|
-|102	|146	|66	|01100110	|f		|Lowercase f|
-|103	|147	|67	|01100111	|g		|Lowercase g|
-|104	|150	|68	|01101000	|h		|Lowercase h|
-|105	|151	|69	|01101001	|i		|Lowercase i|
-|106	|152	|6A	|01101010	|j		|Lowercase j|
-|107	|153	|6B	|01101011	|k		|Lowercase k|
-|108	|154	|6C	|01101100	|l		|Lowercase l|
-|109	|155	|6D	|01101101	|m		|Lowercase m|
-|110	|156	|6E	|01101110	|n		|Lowercase n|
-|111	|157	|6F	|01101111	|o		|Lowercase o|
-|112	|160	|70	|01110000	|p		|Lowercase p|
-|113	|161	|71	|01110001	|q		|Lowercase q|
-|114	|162	|72	|01110010	|r		|Lowercase r|
-|115	|163	|73	|01110011	|s		|Lowercase s|
-|116	|164	|74	|01110100	|t		|Lowercase t|
-|117	|165	|75	|01110101	|u		|Lowercase u|
-|118	|166	|76	|01110110	|v		|Lowercase v|
-|119	|167	|77	|01110111	|w		|Lowercase w|
-|120	|170	|78	|01111000	|x		|Lowercase x|
-|121	|171	|79	|01111001	|y		|Lowercase y|
-|122	|172	|7A	|01111010	|z		|Lowercase z|
-|123	|173	|7B	|01111011	|{		|Opening brace|
-|124	|174	|7C	|01111100	||		|Vertical bar|
-|125	|175	|7D	|01111101	|}		|Closing brace|
-|126	|176	|7E	|01111110	|~		|Equivalency sign (tilde)|
-|127	|177	|7F	|01111111	|	  	|Delete|
+|DEC|	OCT	|HEX|	BIN	|缩写(符号)	|描述| DEC|	OCT	|HEX|	BIN	|缩写(符号)	|描述|
+|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|:----:|
+|0	|000	|00	|00000000	|NUL	|Null char (空字符)|64	|100	|40	|01000000	|@		|At symbol|
+|1	|001	|01	|00000001	|SOH	|Start of Heading (标题开始)|65	|101	|41	|01000001	|A		|Uppercase A|
+|2	|002	|02	|00000010	|STX	|Start of Text (正文开始)|66	|102	|42	|01000010	|B		|Uppercase B|
+|3	|003	|03	|00000011	|ETX	|End of Text (正文结束)|67	|103	|43	|01000011	|C		|Uppercase C|
+|4	|004	|04	|00000100	|EOT	|End of Transmission (传输结束)|68	|104	|44	|01000100	|D		|Uppercase D|
+|5	|005	|05	|00000101	|ENQ	|Enquiry (请求)|69	|105	|45	|01000101	|E		|Uppercase E|
+|6	|006	|06	|00000110	|ACK	|Acknowledgment (收到通知)|70	|106	|46	|01000110	|F		|Uppercase F|
+|7	|007	|07	|00000111	|BEL	|Bell (响铃)|71	|107	|47	|01000111	|G		|Uppercase G|
+|8	|010	|08	|00001000	|BS	|Back Space (退格)|72	|110	|48	|01001000	|H		|Uppercase H|
+|9	|011	|09	|00001001	|HT	|Horizontal Tab (水平制表符)|73	|111	|49	|01001001	|I		|Uppercase I|
+|10	|012	|0A	|00001010	|LF	|Line Feed (换行键)|74	|112	|4A	|01001010	|J		|Uppercase J|
+|11	|013	|0B	|00001011	|VT	|Vertical Tab (垂直制表符)|75	|113	|4B	|01001011	|K		|Uppercase K|
+|12	|014	|0C	|00001100	|FF	|Form Feed (换页键)|76	|114	|4C	|01001100	|L		|Uppercase L|
+|13	|015	|0D	|00001101	|CR	|Carriage Return (回车键)|77	|115	|4D	|01001101	|M		|Uppercase M|
+|14	|016	|0E	|00001110	|SO	|Shift Out / X-On (不用切换)|78	|116	|4E	|01001110	|N		|Uppercase N|
+|15	|017	|0F	|00001111	|SI	|Shift In / X-Off (启用切换)|79	|117	|4F	|01001111	|O		|Uppercase O|
+|16	|020	|10	|00010000	|DLE		|Data Line Escape (数据链路转义)|80	|120	|50	|01010000	|P		|Uppercase P|
+|17	|021	|11	|00010001	|DC1		|Device Control 1 (设备控制1)|81	|121	|51	|01010001	|Q		|Uppercase Q|
+|18	|022	|12	|00010010	|DC2		|Device Control 2 (设备控制2)|82	|122	|52	|01010010	|R		|Uppercase R|
+|19	|023	|13	|00010011	|DC3		|Device Control 3 (设备控制3)|83	|123	|53	|01010011	|S		|Uppercase S|
+|20	|024	|14	|00010100	|DC4		|Device Control 4 (设备控制4)|84	|124	|54	|01010100	|T		|Uppercase T|
+|21	|025	|15	|00010101	|NAK		|Negative Acknowledgement (拒绝接收)|85	|125	|55	|01010101	|U		|Uppercase U|
+|22	|026	|16	|00010110	|SYN		|Synchronous Idle (同步空闲)|86	|126	|56	|01010110	|V		|Uppercase V|
+|23	|027	|17	|00010111	|ETB		|End of Transmit Block (传输块结束)|87	|127	|57	|01010111	|W		|Uppercase W|
+|24	|030	|18	|00011000	|CAN		|Cancel (取消)|88	|130	|58	|01011000	|X		|Uppercase X|
+|25	|031	|19	|00011001	|EM	 	  |End of Medium (介质中断)|89	|131	|59	|01011001	|Y		|Uppercase Y|
+|26	|032	|1A	|00011010	|SUB		|Substitute (替补)|90	|132	|5A	|01011010	|Z		|Uppercase Z|
+|27	|033	|1B	|00011011	|ESC		|Escape (溢出)|91	|133	|5B	|01011011	|[		|Opening bracket|
+|28	|034	|1C	|00011100	|FS		|File Separator (文件分割符)|92	|134	|5C	|01011100	|\		|Backslash|
+|29	|035	|1D	|00011101	|GS		|Group Separator (分组符)|93	|135	|5D	|01011101	|]		|Closing bracket|
+|30	|036	|1E	|00011110	|RS		|Record Separator (记录分离符)|94	|136	|5E	|01011110	|^		|Caret - circumflex|
+|31	|037	|1F	|00011111	|US	 	|Unit Separator (单元分隔符)|95	|137	|5F	|01011111	|_		|Underscore|
+|32	|040	|20	|00100000	| 		|Space (空格)|96	|140	|60	|01100000	|`		|Grave accent|
+|33	|041	|21	|00100001	|!		|Exclamation mark|97	|141	|61	|01100001	|a		|Lowercase a|
+|34	|042	|22	|00100010	|"		|Double quotes|98	|142	|62	|01100010	|b		|Lowercase b|
+|35	|043	|23	|00100011	|#		|Number|99	|143	|63	|01100011	|c		|Lowercase c|
+|36	|044	|24	|00100100	|$		|Dollar|100	|144	|64	|01100100	|d		|Lowercase d|
+|37	|045	|25	|00100101	|%		|Procenttecken|101	|145	|65	|01100101	|e		|Lowercase e|
+|38	|046	|26	|00100110	|&		|Ampersand|102	|146	|66	|01100110	|f		|Lowercase f|
+|39	|047	|27	|00100111	|'		|Single quote|103	|147	|67	|01100111	|g		|Lowercase g|
+|40	|050	|28	|00101000	|(		|Open parenthesis|104	|150	|68	|01101000	|h		|Lowercase h|
+|41	|051	|29	|00101001	|)		|Close parenthesis|105	|151	|69	|01101001	|i		|Lowercase i|
+|42	|052	|2A	|00101010	|*		|Asterisk|106	|152	|6A	|01101010	|j		|Lowercase j|
+|43	|053	|2B	|00101011	|+		|Plus|107	|153	|6B	|01101011	|k		|Lowercase k|
+|44	|054	|2C	|00101100	|,		|Comma|108	|154	|6C	|01101100	|l		|Lowercase l|
+|45	|055	|2D	|00101101	|-		|Hyphen|109	|155	|6D	|01101101	|m		|Lowercase m|
+|46	|056	|2E	|00101110	|.		|Period, dot or full stop|110	|156	|6E	|01101110	|n		|Lowercase n|
+|47	|057	|2F	|00101111	|/		|Slash or divide|111	|157	|6F	|01101111	|o		|Lowercase o|
+|48	|060	|30	|00110000	|0		|Zero|112	|160	|70	|01110000	|p		|Lowercase p|
+|49	|061	|31	|00110001	|1		|One|113	|161	|71	|01110001	|q		|Lowercase q|
+|50	|062	|32	|00110010	|2		|Two|114	|162	|72	|01110010	|r		|Lowercase r|
+|51	|063	|33	|00110011	|3		|Three|115	|163	|73	|01110011	|s		|Lowercase s|
+|52	|064	|34	|00110100	|4		|Four|116	|164	|74	|01110100	|t		|Lowercase t|
+|53	|065	|35	|00110101	|5		|Five|117	|165	|75	|01110101	|u		|Lowercase u|
+|54	|066	|36	|00110110	|6		|Six|118	|166	|76	|01110110	|v		|Lowercase v|
+|55	|067	|37	|00110111	|7		|Seven|119	|167	|77	|01110111	|w		|Lowercase w|
+|56	|070	|38	|00111000	|8		|Eight|120	|170	|78	|01111000	|x		|Lowercase x|
+|57	|071	|39	|00111001	|9		|Nine|121	|171	|79	|01111001	|y		|Lowercase y|
+|58	|072	|3A	|00111010	|:		|Colon|122	|172	|7A	|01111010	|z		|Lowercase z|
+|59	|073	|3B	|00111011	|;		|Semicolon|123	|173	|7B	|01111011	|{		|Opening brace|
+|60	|074	|3C	|00111100	|<		|Less than|124	|174	|7C	|01111100	||		|Vertical bar|
+|61	|075	|3D	|00111101	|=		|Equals|125	|175	|7D	|01111101	|}		|Closing brace|
+|62	|076	|3E	|00111110	|>		|Greater than|126	|176	|7E	|01111110	|~		|Equivalency sign (tilde)|
+|63	|077	|3F	|00111111	|?		|Question mark|127	|177	|7F	|01111111	|	  	|Delete|
 
 
 > ANSI 字符集：所谓ANSI字符集并不是指某一种特殊的字符集。它实际上是指基于ASCII扩展而来的字符集的总称。
@@ -210,23 +146,44 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 > 推进全球字符集大一统的两大组织：<br>
     (1) 国际标准化组织（ISO），他们于1984年创建ISO/IEC JTC1/SC2/WG2工作组，试图制定一份“通用字符集”（Universal Character Set，简称UCS），并最终制定了<b>ISO 10646标准</b>。<br>
     (2) 统一码联盟，他们由Xerox、Apple等软件制造商于1988年组成，并且开发了<b>Unicode标准</b>（The Unicode Standard，这个前缀Uni 代表了 Universal，Unique， and Uniform）。<br><br>
-    <b>1991年</b>前后，两个项目的参与者都认识到，世界不需要两个不兼容的字符集。于是，它们开始合并双方的工作成果，并为创立一个单一编码表而协同工作。<b>从Unicode 2.0开始，Unicode采用了与ISO 10646-1相同的字库和字码；ISO也承诺，ISO 10646将不会给超出U+10FFFF的UCS-4编码赋值，以使得两者保持一致</b>。两个项目仍都独立存在，并独立地公布各自的标准。不过由于Unicode这一名字比较好记，因而它使用更为广泛。
+    <b>1991年</b>前后，两个项目的参与者都认识到，世界不需要两个不兼容的字符集。于是，它们开始合并双方的工作成果，并为创立一个单一编码表而协同工作。<b>从Unicode 2.0开始，Unicode采用了与ISO 10646-1相同的字库和字码；ISO也承诺，ISO 10646将不会给超出U+10FFFF的字符编号，以使得两者保持一致</b>。两个项目仍都独立存在，并独立地公布各自的标准。不过由于Unicode这一名字比较好记，因而它使用更为广泛。
 <br>
 
 ##### 与Unicode相关的一系列重要概念
 > Code Point、Plane、BMP：<br>
-    在实际编码(考虑存储)之前先给每个穷举到的字符指定一个序号，即是<b>Code Point(码位)</b>，把它当做是数学概念，和用几个字节存储无关，只要发布Unicode 的标准化组织（ISO 和 统一码联盟）愿意，将新出现的字符继续向后编号就可以了，既然是数学序号，那就没有什么不够用的问题。<br>
+    在实际编码(考虑存储)之前先给每个穷举到的字符编号，即是<b>Code Point(码位)</b>，把它当做是数学概念，和用几个字节存储无关，只要发布Unicode 的标准化组织（ISO 和 统一码联盟）愿意，将新出现的字符继续向后编号就可以了，既然是数学序号，那就没有什么不够用的问题。<br>
     在编号的过程中，标准化组织还将用到的数字编号(码位)进行了分区操作。从而引出了<b>Plane(平面)</b>的概念。即将256×256=65536个码位作为一个平面(一个二维平面，长宽均为256个编号)。<br>
     此外，在对全球字符编号时有一些原则，就是将越常用的字符越靠前。所以，前65536个字符所构成的第一个Plane(平面)，这个平面就叫做<b>基本多文种平面（BMP - Basic Multilingual Plane）</b>。而大于BMP最大值的码位所构成的平面，就被称作<b>辅助平面</b>。并且ISO和统一码联盟为了兼容问题，协商确定<b>最多使用16个辅助平面</b>。 在BMP 里的字符，只要4位16进制数就可以表示。而在辅助平面内的字符是少需要6位16进制数表示(实际中UTF-8/16均使用8位16进制数进行编码)<br>
     只为最常用的字符编号肯定是不行的，因为在某些特殊的场景之下，我们会用到那些不常用的字符。所以那些相对不常用的字符就被编号于辅助平面内。以下是辅助平面中16个平面的名称和编码范围：<br>
 
 |平面	|编码范围	|中文名称|英文名称|
 |:----:|:----:|:----:|:----:|
-|0号平面	|U+0000 - U+FFFF	|基本多文种平面	|Basic Multilingual Plane,简称BMP|
-|1号平面	|U+10000 - U+1FFFF	|多文种补充平面	|Supplementary Multilingual Plane,简称SMP|
-|2号平面	|U+20000 - U+2FFFF	|表意文字补充平面	|Supplementary Ideographic Plane,简称SIP|
-|3号平面	|U+30000 - U+3FFFF|	表意文字第三平面	|Tertiary Ideographic Plane,简称TIP|
-|4～13号平面	|U+40000 - U+DFFFF	|（尚未使用）	| | 
-|14号平面	|U+E0000 - U+EFFFF	|特别用途补充平面	|Supplementary Special-purpose Plane,简称SSP|
-|15号平面	|U+F0000 - U+FFFFF	|保留作为私人使用区（A区）|	Private Use Area-A,简称PUA-A|
-|16号平面	|U+100000 - U+10FFFF	|保留作为私人使用区（B区） | Private Use Area-B,简称PUA-B|
+|0号平面	|[U+0000 - U+FFFF](https://www.qqxiuzi.cn/zh/unicode-zifu.php?plane=0)	|基本多文种平面	|Basic Multilingual Plane,简称BMP|
+|1号平面	|[U+10000 - U+1FFFF](https://www.qqxiuzi.cn/zh/unicode-zifu.php?plane=1)	|多文种补充平面	|Supplementary Multilingual Plane,简称SMP|
+|2号平面	|[U+20000 - U+2FFFF](https://www.qqxiuzi.cn/zh/unicode-zifu.php?plane=2)	|表意文字补充平面	|Supplementary Ideographic Plane,简称SIP|
+|3号平面	|[U+30000 - U+3FFFF](https://www.qqxiuzi.cn/zh/unicode-zifu.php?plane=3)|	表意文字第三平面	|Tertiary Ideographic Plane,简称TIP|
+|4～13号平面	|[U+40000 - U+DFFFF](https://www.qqxiuzi.cn/zh/unicode-zifu.php?plane=4)	|（尚未使用）	| | 
+|14号平面	|[U+E0000 - U+EFFFF](https://www.qqxiuzi.cn/zh/unicode-zifu.php?plane=14)	|特别用途补充平面	|Supplementary Special-purpose Plane,简称SSP|
+|15号平面	|[U+F0000 - U+FFFFF](https://www.qqxiuzi.cn/zh/unicode-zifu.php?plane=15)	|保留作为私人使用区（A区）|	Private Use Area-A,简称PUA-A|
+|16号平面	|[U+100000 - U+10FFFF](https://www.qqxiuzi.cn/zh/unicode-zifu.php?plane=16)	|保留作为私人使用区（B区） | Private Use Area-B,简称PUA-B|
+<br>
+
+> UTF-16编码规则(关于代理对的概念后续再补上)：<br>
+> 前面提到过：Unicode码位分为17个平面(1个BMP+16个辅助平面)。<br>
+> 在<b>BMP内</b>的字符，UTF-16直接使用Unicode码位作为其编码值。
+> 如：“汉”在Unicode中的码位为6C49，所以UTF-16编码也为496C(该值为大端表示，小端为6C49)。<br>
+> 在<b>辅助平面内</b>的字符,按照以下规则编码：
+> 用它们在Unicode中码位<b>减去0x10000</b>获得一个数字，该数字的<b>前10位(bits)加上0xD800</b>，就得到UTF-16四字节编码中的<b>前两个字节</b>；该数字的<b>后10位(bits)加上0xDC00</b>，就得到UTF-16四字节编码中的<b>后两个字节</b>。<br>
+> 如：“𪺫(nǎi)”的码位为2AEAB，减去0x10000得到1AEAB（二进制值为0001 1010 1110 1010 1011），前10位加上D800得到D86B，后10位加上DC00得到DEAB。所以“𪺫”的UTF-16的编码值为D86BDEAB（该值为大端表示，小端为6BD8ABDE）。<br>
+
+> UTF-8编码规则：
+> (1) 对于ASCII码中的符号，使用单字节编码，其编码值与ASCII值相同。其中ASCII值的范围为0~0x7F，所有编码的二进制值中第一位为0（这个正好可以用来区分单字节编码和多字节编码）。
+(2) 其它字符用多个字节来编码（假设用N个字节），多字节编码需满足：第一个字节的前N位都为1，第N+1位为0，后面N-1 个字节的前两位都为10，这N个字节中其余位全部用来存储Unicode中的码位值。如下表：
+
+|字节数(N)	|Unicode码位 | UTF-8编码 |
+|:----:|:----:|:----:|
+|1	|000000-00007F	|0xxxxxxx|
+|2	|000080-0007FF	|110xxxxx 10xxxxxx|
+|3	|000800-00FFFF	|1110xxxx 10xxxxxx 10xxxxxx|
+|4	|010000-10FFFF	|11110xxx 10xxxxxx 10xxxxxx 10xxxxxx|
+
