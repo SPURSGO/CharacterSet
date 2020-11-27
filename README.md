@@ -34,7 +34,7 @@ GB2312具体字符的编码值及编码规则可查看[此工具网站](https://
 
 <br>
 
-1. <b>Unicode</b><br>
+3. <b>Unicode</b><br>
    在全世界出现了很多不同的ANSI字符集之后，很多国家都在为自己的文字编码，并且互不想通，这就造成不同的语言字符编码值相同却代表不同的符号（例如：韩文编码EUC-KR中“한국어”的编码值正好是汉字编码GBK中的“茄惫绢”）。因此，同一份文档，拷贝至不同语言环境(Locale)的机器，就可能成了乱码。所以，全球字符大一统的需求应运而生。<br>
    <br>
    首先需要明确一点的是Unicode并不是一种字符编码方式，它仅仅是一个字符集。但是这个字符集特别的大，大到足以容纳全世界所有的字符。从而可以让全世界都统一使用同一套字符集，并且可以让全世界都使用相同的编码格式(UTF-8/16/32)，从而解决乱码的问题。<br>
@@ -199,7 +199,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
     int nRet = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, dBuf, dBufSize * sizeof(wchar_t));
 
     { /* 使用转换后的字符串 */ }
-    
+
     delete[] dBuf;
    
 > (2) 使用<b>WideCharToMultiByte</b>可以将宽字节字符串转换为多字节字符串。其使用步骤与MultiByteToWideChar大致相似。<br>
