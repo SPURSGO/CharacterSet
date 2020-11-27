@@ -215,30 +215,31 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
     #define CreateWindowEx  CreateWindowExW <br>
     #else <br>
     #define CreateWindowEx  CreateWindowExA <br>
-    #endif <br>
+    #endif <br><br>
    (2) 在windows vista中， CreateWindowExA就只是作为一个转换层，它就负责分配内存，将ANSI字符串转换为Unicode字符串。<br>
-   然后再调用CreateWindowExW，向其传递转换后的Unicode字符串进行处理。<br>
+   然后再调用CreateWindowExW，向其传递转换后的Unicode字符串进行处理。<br><br>
    (3) 现在，Microsoft逐渐开始倾向于某些函数只提供Unicode版本。如：ReadDirectoryChangesW和CreateProcessWithLogonW。
-
+<br>
 > C运行库中的Unicode与ANSI函数：<br>
-   与windows函数一样，C运行库也提供了一系列函数来处理ANSI字符和字符串，并提供另一系列函数来处理Unicode字符和字符串。
+   与windows函数一样，C运行库也提供了一系列函数来处理ANSI字符和字符串，并提供另一系列函数来处理Unicode字符和字符串。<br>
    但是，两者最大的区别就是，他们两者都是独立的。即ANSI系列函数的内部不会做字符串的转换和调用Unicode的函数。Unicode系列函数也是如此。<br>
    比如：在C运行库中，strlen返回一个ANSI字符串的长度，而wcslen返回Unicode字符串的长度。
 
 <br>
-1. Unicode与ANSI字符串的转换函数：MultiByteToWideChar与WideCharToMultiByte (win32API)<br>
+
+3. Unicode与ANSI字符串的转换函数：MultiByteToWideChar与WideCharToMultiByte (win32API)<br>
 
 >  (1) 使用MultiByteToWideChar将多字节字符串转换为宽字节字符串，原型如下：<br>
    int MultiByteToWideChar(
-      UINT CodePage,  // 标识了与多字节字符串相关联的代码页值(code page)<br>
-      DWORD dwFlags,  // 更多额外的控制，常为0<br>
-      PCSTR pMultiByteStr,  // 要转换的多字节字符串(ANSI字符串)<br>
-      int cbMultiByte,  // 指定字符串的长度(字节数)，如果为-1，函数便可自动判断源字符串的长度。<br>
-      PWSTR pWideCharStr,  // 转换结果的缓冲区<br>
-      int cchWideChar  // 缓冲区的最大长度(字符数)<必须指定><br>
+      UINT CodePage, &ensp; // 标识了与多字节字符串相关联的代码页值(code page)<br>
+      DWORD dwFlags,  &ensp; // 更多额外的控制，常为0<br>
+      PCSTR pMultiByteStr,  &ensp; // 要转换的多字节字符串(ANSI字符串)<br>
+      int cbMultiByte,  &ensp; // 指定字符串的长度(字节数)，如果为-1，函数便可自动判断源字符串的长度。<br>
+      PWSTR pWideCharStr, &ensp;  // 转换结果的缓冲区<br>
+      int cchWideChar  &ensp; // 缓冲区的最大长度(字符数)<必须指定><br>
       );<br>
    注：如果调用MultiByteToWideChar，并给cchWideChar参数传入0，函数就不会执行转换,而是返回一个宽字符数(包括了'\0')，
-   只有当缓冲区能够容纳该数量的宽字符时，转换才会成功。用法步骤如下：
+   只有当缓冲区能够容纳该数量的宽字符时，转换才会成功。用法步骤如下：<br>
    (1) 调用MultiByteToWideChar，为pWideCharStr参数传入NULL，为cchWideChar参数传入0，为cbMultiByte参数传入-1。<br>
    (2) 分配一块足以容纳转换后的Unicode字符串的内存。它的大小上一个MultiByteToWideChar调用的返回值乘以sizeof(wchar_t)。<br>
    (3) 再一次调用MultiByteToWideChar，这一次将缓冲区地址作为pWideCharStr参数的值传入。将第一次MultiByteToWideChar调用的返回值乘以sizeof(wchar_t)后得到的大小作为cchWideChar参数的值传入。<br>
@@ -255,7 +256,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    更多细节可参考[Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-widechartomultibyte)。
 
 
-4. C++中，wchar，char，默认情况下分别是什么编码。CT2A 里面 CP_ACP、CP_UTF8 的意义:
+1. C++中，wchar，char，默认情况下分别是什么编码。CT2A 里面 CP_ACP、CP_UTF8 的意义:
  CT2A  是ATL中的字符串转换函数
 char: ansi编码(ascii)， 不可以存储其他ansi扩展字符
 wchar: UTF-16 定义时需要使用L标明(否则会因为locale出现问题)
