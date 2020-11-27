@@ -202,10 +202,9 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 ### 二、编程中经常遇见的编码问题
 1. ANSI字符和Unicode字符与字符串的数据类型：<br>
    char c = 'A';<br>
-   char szBuffer[100] = "A String";
-<br>
-   typedef unsigned short wchar_t;
-   wchar_t c = L'A';  // MSVC与GCC存在差异
+   char szBuffer[100] = "A String";<br><br>
+   typedef unsigned short wchar_t; <br>
+   wchar_t c = L'A';  // MSVC与GCC存在差异 <br>
    wchar_t szBuffer[100] = L"A string";
 <br>
 
