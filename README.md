@@ -84,10 +84,9 @@ GB2312具体字符的编码值及编码规则可查看[此工具网站](https://
 |4	|010000-10FFFF	|11110xxx 10xxxxxx 10xxxxxx 10xxxxxx|
 
 > 如：“汉”的 Unicode 码点是 0x6c49（110 1100 0100 1001），通过上面的对照表得知，0x00 6c49 位于第三行的范围，那么得出其格式为 1110xxxx 10xxxxxx 10xxxxxx。接着，从“汉”的二进制数最后一位开始，从后向前依次填充对应格式中的 x，多出的 x 用 0 补上。这样，就得到了“汉”的 UTF-8 编码为 11100110 10110001 10001001，转换成十六进制就是 0xE6 0xB1 0x89。
-
 <br>
 
- ###### UTF-8 BOM<br>
+ ###### <b>UTF-8 BOM</b><br>
  UTF-8 BOM又叫UTF-8 签名，UTF-8不需要BOM来表明字节顺序，但可以用BOM来表明编码方式。当文本程序读取到以 EF BB BF开头的字节流时，就知道这是UTF-8编码了。Windows就是使用BOM来标记文本文件的编码方式的。<br>
 > "ZERO WIDTH NO-BREAK SPACE"字符(BOM)的Unicode码位为FEFF，所以对应的UTF-8编码为 EF BB BF。
 
@@ -146,7 +145,8 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    wchar_t szBuffer[100] = L"A string"; <br><br>
 
    char: ansi编码(ASCII，单字节)， 不可以存储其他ansi扩展字符<br>
-   wchar: UTF-16编码 定义时需要使用L标明(否则会因为locale出现问题，如MSVC中会使用GBK编码,因为windows的locale默认是GBK)
+   wchar: UTF-16编码 定义时需要使用L标明<br>
+   否则会因为locale出现预期之外的结果，如MSVC中会使用GBK编码,因为windows的locale默认是GBK。
 
 <br>
 
@@ -165,7 +165,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 > C运行库中的Unicode与ANSI函数：<br>
    与windows函数一样，C运行库也提供了一系列函数来处理ANSI字符和字符串，并提供另一系列函数来处理Unicode字符和字符串。<br>
-   但是，两者最大的区别就是，他们两者都是独立的。即ANSI系列函数的内部不会做字符串的转换和调用Unicode的函数。Unicode系列函数也是如此。<br>
+   但是，与windows函数最大的区别就是，C运行库中的两个系列函数都是独立的。即ANSI系列函数的内部不会做字符串的转换和调用Unicode的函数。Unicode系列函数也是如此。<br>
    比如：在C运行库中，strlen返回一个ANSI字符串的长度，而wcslen返回Unicode字符串的长度。
 
 <br>
@@ -173,14 +173,14 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 3. <b>Unicode与ANSI字符串的转换函数：MultiByteToWideChar与WideCharToMultiByte (win32API)</b><br>
 
 >  (1) 使用MultiByteToWideChar将多字节字符串转换为宽字节字符串，原型如下：<br><br>
-   int MultiByteToWideChar(<br>
-      UINT CodePage, &ensp;&ensp; // 标识了与多字节字符串相关联的代码页值(code page)<br>
-      DWORD dwFlags,  &ensp;&ensp; // 更多额外的控制，常为0<br>
-      PCSTR pMultiByteStr,  &ensp;&ensp; // 要转换的多字节字符串(ANSI字符串)<br>
-      int cbMultiByte,  &ensp;&ensp; // 指定字符串的长度(字节数)，如果为-1，函数便可自动判断源字符串的长度。<br>
-      PWSTR pWideCharStr, &ensp;&ensp;  // 转换结果的缓冲区<br>
-      int cchWideChar  &ensp;&ensp; // 缓冲区的最大长度(字符数)<必须指定><br>
-      );<br>
+   <b>int MultiByteToWideChar(</b><br>
+      <b>UINT &ensp;&ensp;[CodePage](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar),</b> &ensp;&ensp; // 标识了与多字节字符串相关联的代码页值(code page)<br>
+      <b>DWORD &ensp;&ensp;[dwFlags](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar),</b>  &ensp;&ensp; // 更多额外的控制，常为0<br>
+      <b>PCSTR &ensp;&ensp;pMultiByteStr,</b>  &ensp;&ensp; // 要转换的多字节字符串(ANSI字符串)<br>
+      <b>int &ensp;&ensp;cbMultiByte,</b>  &ensp;&ensp; // 指定字符串的长度(字节数)，如果为-1，函数便可自动判断源字符串的长度。<br>
+      <b>PWSTR &ensp;&ensp;pWideCharStr,</b> &ensp;&ensp;  // 转换结果的缓冲区<br>
+      <b>int&ensp;&ensp; cchWideChar</b>  &ensp;&ensp; // 缓冲区的最大长度(字符数)<必须指定><br>
+      <b>);</b><br>
    注：如果调用MultiByteToWideChar，并给cchWideChar参数传入0，函数就不会执行转换,而是返回一个宽字符数(包括了'\0')，
    只有当缓冲区能够容纳该数量的宽字符时，转换才会成功。<br><br>
    用法步骤具体如下：<br>
@@ -203,13 +203,13 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 <br>
 
 4. <b>ATL字符串转换类:</b>
-> ATL3中提供了字符串转换宏，如T2A、A2T等<br>
+> ATL3中提供了<b>字符串转换宏</b>，如T2A、A2T等<br>
 不过使用它们需要借助本地变量,因此在使用之前需要声明USES_CONVERSION宏来声明本地变量.<br>
 而且还有个很大的缺陷:<br>
 转换宏总是使用栈存储,它们在运行时调用_alloca在本地栈上分配额外的空间,<br>
 如果在函数中循环地进行转换,很可能因为栈空间用尽而崩溃,因为栈空间在函数退出后才能释放。<br>
 还有个很严重的问题:若在C++ catch块中使用转换宏,_alloca调用会搅乱栈上的异常跟踪信息而使程序崩溃。<br><br>
-由于上述缺陷，在ATL7中引入了字符串转换类,所有的类采用统一的命名格式:C<源格式简写>2<目标格式简写>。<br>
+由于上述缺陷，在ATL7中引入了<b>字符串转换类</b>,所有的类采用统一的命名格式:C<源格式简写>2<目标格式简写>。<br>
 如CT2A用于将UNICODE字符串转换为ANSI字符串。 使得字符串转换更为安全好用。<br>
 
     // ATL3字符串转换宏
@@ -235,7 +235,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
   BOOL &nbsp; IsTextUnicode(const &nbsp;VOID &nbsp;*pvBuffer, &nbsp;int &nbsp; size, &nbsp;LPINT &nbsp;[lpiResult](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-istextunicode));<br>
   (1) pvBuffer参数指向要测试的缓冲区的地址。<br>
   (2) size参数指定pvBuffer缓冲区的字节数。测试的字节数越多越准确<br>
-  (3) lpiResult是一个整数的地址，在调用IsTextUnicode之前必须初始化这个整数，从而指出希望执行哪些测试。如果传入NULL，则将执行所有测试。<br>
+  (3) [lpiResult](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-istextunicode)是一个整数的地址，在调用IsTextUnicode之前必须初始化这个整数，从而指出希望执行哪些测试。如果传入NULL，则将执行所有测试。<br>
    返回值：如果认为测试缓冲区包含的是Unicode文本，就返回TRUE。否则返回FALSE。<br>
 
 <br>
