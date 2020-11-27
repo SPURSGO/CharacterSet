@@ -174,12 +174,12 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 >  (1) 使用MultiByteToWideChar将多字节字符串转换为宽字节字符串，原型如下：<br><br>
    <b>int MultiByteToWideChar(</b><br>
-      <b>UINT &ensp;&ensp;[CodePage](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar),</b> &ensp;&ensp; // 标识了与多字节字符串相关联的代码页值(code page)<br>
-      <b>DWORD &ensp;&ensp;[dwFlags](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar),</b>  &ensp;&ensp; // 更多额外的控制，常为0<br>
-      <b>PCSTR &ensp;&ensp;pMultiByteStr,</b>  &ensp;&ensp; // 要转换的多字节字符串(ANSI字符串)<br>
-      <b>int &ensp;&ensp;cbMultiByte,</b>  &ensp;&ensp; // 指定字符串的长度(字节数)，如果为-1，函数便可自动判断源字符串的长度。<br>
-      <b>PWSTR &ensp;&ensp;pWideCharStr,</b> &ensp;&ensp;  // 转换结果的缓冲区<br>
-      <b>int&ensp;&ensp; cchWideChar</b>  &ensp;&ensp; // 缓冲区的最大长度(字符数)<必须指定><br>
+      <b>UINT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CodePage](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar),</b> &ensp;&ensp; &nbsp;&nbsp;// 标识了与多字节字符串相关联的代码页值(code page)<br>
+      <b>DWORD &ensp;&ensp;[dwFlags](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar),</b>  &ensp;&ensp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 更多额外的控制，常为0<br>
+      <b>PCSTR &ensp;&ensp;&nbsp;&nbsp;pMultiByteStr,</b>&nbsp;&nbsp;// 要转换的多字节字符串(ANSI字符串)<br>
+      <b>int &ensp;&ensp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cbMultiByte,</b>  &ensp;&ensp;// 指定字符串的长度(字节数)，如果为-1，函数便可自动判断源字符串的长度。<br>
+      <b>PWSTR &ensp;&ensp;&nbsp;&nbsp;pWideCharStr,</b> // 转换结果的缓冲区<br>
+      <b>int&ensp;&ensp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cchWideChar</b>  &nbsp;&nbsp;// 缓冲区的最大长度(字符数)<必须指定><br>
       <b>);</b><br>
    注：如果调用MultiByteToWideChar，并给cchWideChar参数传入0，函数就不会执行转换,而是返回一个宽字符数(包括了'\0')，
    只有当缓冲区能够容纳该数量的宽字符时，转换才会成功。<br><br>
