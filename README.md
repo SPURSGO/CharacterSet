@@ -140,16 +140,16 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 <br>
 
 ### 二、编程中经常遇见的编码问题
-1. <b>ANSI字符和Unicode字符与字符串的数据类型：</b><br>
+1. <b>ANSI字符和Unicode字符与字符串的数据类型，以及默认的编码方式：</b><br>
    char c = 'A';<br>
    char szBuffer[100] = "A String";<br><br>
    typedef unsigned short wchar_t; <br>
    wchar_t c = L'A';  // MSVC与GCC存在差异 <br>
    wchar_t szBuffer[100] = L"A string"; <br><br>
 
-   char: ansi编码(ASCII，单字节)， 不可以存储其他ansi扩展字符<br>
-   wchar: UTF-16编码 定义时需要使用L标明<br>
-   否则会因为locale出现预期之外的结果，如MSVC中会使用GBK编码,因为windows的locale默认是GBK。
+   char: 默认ANSI编码(ASCII，单字节)， 不可以存储其他ansi扩展字符<br>
+   wchar: 默认UTF-16编码 定义时需要使用L标明，否则会因为locale出现预期之外的结果。<br>
+   如MSVC中会使用GBK编码,因为windows的locale默认是GBK。
 
 <br>
 
