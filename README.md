@@ -200,7 +200,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 <br>
 
 ### 二、编程中经常遇见的编码问题
-1. <b>ANSI字符和Unicode字符与字符串的数据类型：<b><br>
+1. <b>ANSI字符和Unicode字符与字符串的数据类型：</b><br>
    char c = 'A';<br>
    char szBuffer[100] = "A String";<br><br>
    typedef unsigned short wchar_t; <br>
@@ -208,7 +208,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    wchar_t szBuffer[100] = L"A string";
 <br>
 
-2. <b>Unicode与ANSI函数：<b><br>
+2. <b>Unicode与ANSI函数：</b><br>
 > windows中的Unicode与ANSI函数：<br>
     (1) 关于字符串的函数一般都存在两种形式，一种处理ANSI字符串，另一种处理Unicode字符串。比如：<br>
     #ifdef UNICODE <br>
@@ -228,7 +228,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 <br>
 
-3. <b>Unicode与ANSI字符串的转换函数：MultiByteToWideChar与WideCharToMultiByte (win32API)<b><br>
+3. <b>Unicode与ANSI字符串的转换函数：MultiByteToWideChar与WideCharToMultiByte (win32API)</b><br>
 
 >  (1) 使用MultiByteToWideChar将多字节字符串转换为宽字节字符串，原型如下：<br><br>
    int MultiByteToWideChar(<br>
