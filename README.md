@@ -288,17 +288,23 @@ wchar: UTF-16 定义时需要使用L标明(否则会因为locale出现问题)
     typedef CW2AEX<> CW2A;
     #define CT2A CW2A
     
-
+<br>
 
 5. <b>如何判断字符串当前编码，如何判断是否存在中文:</b>
-> <b>IsTextUnicode</br><br>
+> <b>IsTextUnicode</b></br>
   该函数可以<b>有助于</b>分辨文本的编码格式。它使用一系列统计性和确定性方法来猜测缓冲区的内容。所以可能返回错误的结果。<br>
   它的函数原型是：<br>
   BOOL &nbsp; IsTextUnicode(const &nbsp;VOID &nbsp;*pvBuffer, &nbsp;int &nbsp; size, &nbsp;LPINT &nbsp;[lpiResult](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-istextunicode));<br>
   (1) pvBuffer参数指向要测试的缓冲区的地址。<br>
-  (2) size参数指定pvBuffer缓冲区的字节数。测试的字节数越多越准确
-  (3) lpiResult是一个整数的地址，在调用IsTextUnicode之前必须初始化这个整数，从而指出希望执行哪些测试。如果传入NULL，则将执行所有测试。
-   返回值：如果认为测试缓冲区包含的是Unicode文本，就返回TRUE。否则返回FALSE。
+  (2) size参数指定pvBuffer缓冲区的字节数。测试的字节数越多越准确<br>
+  (3) lpiResult是一个整数的地址，在调用IsTextUnicode之前必须初始化这个整数，从而指出希望执行哪些测试。如果传入NULL，则将执行所有测试。<br>
+   返回值：如果认为测试缓冲区包含的是Unicode文本，就返回TRUE。否则返回FALSE。<br>
+
+<br>
+
+> <b>字符串中是否存在中文</b><br>
+> 如果只有英文字母和汉字组成的字符串，那么直接判断单字节是否大于0x80即可。<br>
+> 如果含有多国语言，则需要查看相应编码格式的中文编码范围。
 
 
 
