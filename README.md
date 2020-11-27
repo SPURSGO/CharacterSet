@@ -262,7 +262,7 @@ wchar: UTF-16 定义时需要使用L标明(否则会因为locale出现问题)
 > (2) 使用WideCharToMultiByte将宽字节字符串转换为多字节字符串。其使用步骤与MultiByteToWideChar大致相似。<br>
    更多细节可参考[Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-widechartomultibyte)。
 
-
+<br>
 
 4. <b>ATL字符串转换类:</b>
 > ATL3中提供了字符串转换宏，如T2A、A2T等<br>
@@ -274,6 +274,7 @@ wchar: UTF-16 定义时需要使用L标明(否则会因为locale出现问题)
 由于上述缺陷，在ATL7中引入了字符串转换类,所有的类采用统一的命名格式:C<源格式简写>2<目标格式简写>。<br>
 如CT2A用于将UNICODE字符串转换为ANSI字符串。 使得字符串转换更为安全好用。<br>
 
+    // ATL3字符串转换宏
     #define W2A(lpw) (\
 	((_lpw = lpw) == NULL) ? NULL : (\
 		(_convert = (static_cast<int>(wcslen(_lpw))+1), \
@@ -281,6 +282,7 @@ wchar: UTF-16 定义时需要使用L标明(否则会因为locale出现问题)
 		ATLW2AHELPER((LPSTR) alloca(_convert*sizeof(WCHAR)), _lpw, _convert*sizeof(WCHAR), _acp))))
     #define T2A W2A
 
+    // ATL7字符串转换类
     template< int t_nBufferLength = 128 >
     class CW2AEX { ... };
     typedef CW2AEX<> CW2A;
@@ -288,5 +290,16 @@ wchar: UTF-16 定义时需要使用L标明(否则会因为locale出现问题)
     
 
 
-1. 如何判断字符串当前编码，如何判断中文...
+5. <b>如何判断字符串当前编码，如何判断是否存在中文:</b>
+> <b>IsTextUnicode</br><br>
+  该函数可以<b>有助于</b>分辨文本的编码格式。它使用一系列统计性和确定性方法来猜测缓冲区的内容。所以可能返回错误的结果。<br>
+  它的函数原型是：<br>
+  BOOL &nbsp; IsTextUnicode(const &nbsp;VOID &nbsp;*pvBuffer, &nbsp;int &nbsp; size, &nbsp;LPINT &nbsp;[lpiResult](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-istextunicode));<br>
+  (1) pvBuffer参数指向要测试的缓冲区的地址。<br>
+  (2) size参数指定pvBuffer缓冲区的字节数。测试的字节数越多越准确
+  (3) lpiResult是一个整数的地址，在调用IsTextUnicode之前必须初始化这个整数，从而指出希望执行哪些测试。如果传入NULL，则将执行所有测试。
+   返回值：如果认为测试缓冲区包含的是Unicode文本，就返回TRUE。否则返回FALSE。
+
+
+
     
