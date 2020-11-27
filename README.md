@@ -175,7 +175,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 3. <b>Unicode与ANSI字符串的转换函数：MultiByteToWideChar与WideCharToMultiByte (win32API)</b><br>
 
->  (1) 使用MultiByteToWideChar可以将多字节字符串转换为宽字节字符串，原型如下：<br><br>
+>  (1) 使用<b>MultiByteToWideChar</b>可以将多字节字符串转换为宽字节字符串，原型如下：<br><br>
    <b>int MultiByteToWideChar(</b><br>
       <b>UINT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[CodePage](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar),</b>&ensp;&ensp; &nbsp;&nbsp;&nbsp;// 标识了与多字节字符串相关联的代码页值(code page)<br>
       <b>DWORD &ensp;&ensp;[dwFlags](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar),</b>&ensp;&ensp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 更多额外的控制，常为0<br>
@@ -197,10 +197,12 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
     DWORD dBufSize = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, NULL, 0);
     wchar_t* dBuf = new wchar_t[dBufSize];
     int nRet = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, dBuf, dBufSize * sizeof(wchar_t));
+
     { /* 使用转换后的字符串 */ }
+    
     delete[] dBuf;
    
-> (2) 使用WideCharToMultiByte可以将宽字节字符串转换为多字节字符串。其使用步骤与MultiByteToWideChar大致相似。<br>
+> (2) 使用<b>WideCharToMultiByte</b>可以将宽字节字符串转换为多字节字符串。其使用步骤与MultiByteToWideChar大致相似。<br>
    更多细节可参考[Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-widechartomultibyte)。
 
 <br>
