@@ -206,6 +206,10 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    typedef unsigned short wchar_t; <br>
    wchar_t c = L'A';  // MSVC与GCC存在差异 <br>
    wchar_t szBuffer[100] = L"A string";
+
+   C++中，wchar，char，默认情况下分别是什么编码
+   char: ansi编码(ascii)， 不可以存储其他ansi扩展字符
+wchar: UTF-16 定义时需要使用L标明(否则会因为locale出现问题)
 <br>
 
 2. <b>Unicode与ANSI函数：</b><br>
@@ -248,40 +252,31 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    (4) 使用转换后的字符串。<br>
    (5) 释放Unicode字符串占用的内存块。<br>
    示例如下：更多细节可参考[Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar)。
-   <b>
+   
     DWORD dBufSize = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, NULL, 0);
     wchar_t* dBuf = new wchar_t[dBufSize];
     int nRet = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, dBuf, dBufSize * sizeof(wchar_t));
     { /* 使用转换后的字符串 */ }
     delete[] dBuf;
-   </b>
+   
 > (2) 使用WideCharToMultiByte将宽字节字符串转换为多字节字符串。其使用步骤与MultiByteToWideChar大致相似。<br>
    更多细节可参考[Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-widechartomultibyte)。
 
 
-1. C++中，wchar，char，默认情况下分别是什么编码。CT2A 里面 CP_ACP、CP_UTF8 的意义:
- CT2A  是ATL中的字符串转换函数
-char: ansi编码(ascii)， 不可以存储其他ansi扩展字符
-wchar: UTF-16 定义时需要使用L标明(否则会因为locale出现问题)
- #define CP_ACP                    0           // default to ANSI code page
- #define CP_UTF8                   65001       // UTF-8 translation
+
+4. <b>ATL字符串转换类:</b>
+> ATL3中提供了字符串转换宏，如T2A、A2T等<br>
+不过使用它们需要借助本地变量,因此在使用之前需要声明USES_CONVERSION宏来声明本地变量.<br>
+而且还有个很大的缺陷:<br>
+转换宏总是使用栈存储,它们在运行时调用_alloca在本地栈上分配额外的空间,<br>
+如果在函数中循环地进行转换,很可能因为栈空间用尽而崩溃,因为栈空间在函数退出后才能释放。<br>
+还有个很严重的问题:若在C++ catch块中使用转换宏,_alloca调用会搅乱栈上的异常跟踪信息而使程序崩溃。<br><br>
+由于上述缺陷，在ATL7中引入了字符串转换类,所有的类采用统一的命名格式:C<源格式简写>2<目标格式简写>。<br>
+如CT2A用于将UNICODE字符串转换为ANSI字符串。 使得字符串转换更为安全好用。<br>
+![T2A](./T2A.PNG) 
+![W2A](./W2A.png) 
+![CT2A](./CT2A.png) 
 
 
-5. 编码注意事项，T2A全部替换为CT2A 的原因
- #define T2A W2A  // UNICODE ---> ANSI
- #define A2T A2W  // ANSI ---> UNICODE
-
-ATL3中提供了字符串转换宏，如T2A、A2T等,
-不过使用它们需要借助本地变量,因此在使用之前需要声明USES_CONVERSION宏来声明本地变量.
-而且还有个很大的缺陷:
-转换宏总是使用栈存储,它们在运行时调用_alloca在本地栈上分配额外的空间,
-如果在函数中循环地进行转换,很可能因为栈空间用尽而崩溃,因为栈空间在函数退出后才能释放。
-还有个很严重的问题:若在C++ catch块中使用转换宏,_alloca调用会搅乱栈上的异常跟踪信息而使程序崩溃。
-
-在ATL7中引入了字符串转换类,所有的类采用统一的命名格式:C<源格式简写>2<目标格式简写>,
-如CT2A用于将UNICODE字符串转换为ANSI字符串.
-
-
-6. 如何判断字符串当前编码，IsTextUnicode
-|a|b|c|d|e|
-   |:---:| :---:|:---: |:---: |:---: |
+1. 如何判断字符串当前编码，如何判断中文...
+    
