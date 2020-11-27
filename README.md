@@ -273,9 +273,19 @@ wchar: UTF-16 定义时需要使用L标明(否则会因为locale出现问题)
 还有个很严重的问题:若在C++ catch块中使用转换宏,_alloca调用会搅乱栈上的异常跟踪信息而使程序崩溃。<br><br>
 由于上述缺陷，在ATL7中引入了字符串转换类,所有的类采用统一的命名格式:C<源格式简写>2<目标格式简写>。<br>
 如CT2A用于将UNICODE字符串转换为ANSI字符串。 使得字符串转换更为安全好用。<br>
-![T2A](./T2A.PNG) 
-![W2A](./W2A.png) 
-![CT2A](./CT2A.png) 
+
+    #define W2A(lpw) (\
+	((_lpw = lpw) == NULL) ? NULL : (\
+		(_convert = (static_cast<int>(wcslen(_lpw))+1), \
+		(_convert>INT_MAX/2) ? NULL : \
+		ATLW2AHELPER((LPSTR) alloca(_convert*sizeof(WCHAR)), _lpw, _convert*sizeof(WCHAR), _acp))))
+    #define T2A W2A
+
+    template< int t_nBufferLength = 128 >
+    class CW2AEX { ... };
+    typedef CW2AEX<> CW2A;
+    #define CT2A CW2A
+    
 
 
 1. 如何判断字符串当前编码，如何判断中文...
