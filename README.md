@@ -248,12 +248,13 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    (4) 使用转换后的字符串。<br>
    (5) 释放Unicode字符串占用的内存块。<br>
    示例如下：更多细节可参考[Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar)。
-
+   <b>
     DWORD dBufSize = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, NULL, 0);
     wchar_t* dBuf = new wchar_t[dBufSize];
     int nRet = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, dBuf, dBufSize * sizeof(wchar_t));
     { /* 使用转换后的字符串 */ }
     delete[] dBuf;
+   </b>
 > (2) 使用WideCharToMultiByte将宽字节字符串转换为多字节字符串。其使用步骤与MultiByteToWideChar大致相似。<br>
    更多细节可参考[Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-widechartomultibyte)。
 
