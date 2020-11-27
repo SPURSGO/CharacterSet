@@ -201,7 +201,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 ### 二、编程中经常遇见的编码问题
 1. ANSI字符和Unicode字符与字符串的数据类型：<br>
-   char c = 'A';
+   char c = 'A';<br>
    char szBuffer[100] = "A String";
 <br>
    typedef unsigned short wchar_t;
@@ -217,7 +217,6 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
     #else <br>
     #define CreateWindowEx  CreateWindowExA <br>
     #endif <br>
-   <br>
    (2) 在windows vista中， CreateWindowExA就只是作为一个转换层，它就负责分配内存，将ANSI字符串转换为Unicode字符串。<br>
    然后再调用CreateWindowExW，向其传递转换后的Unicode字符串进行处理。<br>
    (3) 现在，Microsoft逐渐开始倾向于某些函数只提供Unicode版本。如：ReadDirectoryChangesW和CreateProcessWithLogonW。
@@ -228,7 +227,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    比如：在C运行库中，strlen返回一个ANSI字符串的长度，而wcslen返回Unicode字符串的长度。
 
 <br>
-3. Unicode与ANSI字符串的转换函数：MultiByteToWideChar与WideCharToMultiByte (win32API)<br>
+1. Unicode与ANSI字符串的转换函数：MultiByteToWideChar与WideCharToMultiByte (win32API)<br>
 
 >  (1) 使用MultiByteToWideChar将多字节字符串转换为宽字节字符串，原型如下：<br>
    int MultiByteToWideChar(
