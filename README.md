@@ -92,7 +92,7 @@ GB2312具体字符的编码值及编码规则可查看[此工具网站](https://
 
  ###### <b>UTF-8 BOM</b><br>
  UTF-8 BOM又叫UTF-8 签名，UTF-8不需要BOM来表明字节顺序，但可以用BOM来表明编码方式。当文本程序读取到以 EF BB BF开头的字节流时，就知道这是UTF-8编码了。Windows就是使用BOM来标记文本文件的编码方式的。<br>
-> "ZERO WIDTH NO-BREAK SPACE"字符(BOM)的Unicode码位为FEFF，所以对应的UTF-8编码为 EF BB BF。
+> "ZERO WIDTH NO-BREAK SPACE"字符(BOM)的Unicode码位为FEFF，所以对应的UTF-8编码为 EF BB BF。根据Unicode标准，不建议使用UTF-8文件的BOM。
 
 <br>
 <br>
@@ -148,10 +148,10 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 <br>
 
-> <b>常见字符集的应用场景</b>
+> <b>常见字符集的应用场景</b><br>
 > UTF-8：主要用于网络传输，数据存储。<br>
 > UTF-16：一般用于程序内部逻辑处理，比如关于字符串的处理算法，相对于UTF-8的字节流，会更容易定位到某个要处理的字符。<br>
-> GBK：在纯中文数据环境下，使用GBK进行存储，数据传输相对于UTF-8会更好。这也是windows系统的默认locale<br>
+> GBK：纯中文数据环境下，使用GBK进行存储，数据传输相对于UTF-8会更好。这也是windows系统的默认locale。<br>
 
 <br>
 <br>
