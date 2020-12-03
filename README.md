@@ -149,7 +149,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 <br>
 
 > <b>常见字符集的应用场景</b><br>
-> UTF-8：主要用于网络传输，数据存储。<br>
+> UTF-8：主要用于网络传输，数据库存储。<br>
 > UTF-16：一般用于程序内部逻辑处理，比如关于字符串的处理算法，相对于UTF-8的字节流，会更容易定位到某个要处理的字符。<br>
 > GBK：纯中文数据环境下，使用GBK进行存储，数据传输相对于UTF-8会更好。这也是windows系统的默认locale。<br>
 
@@ -161,11 +161,11 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    char c = 'A';<br>
    char szBuffer[100] = "A String";<br><br>
    typedef unsigned short wchar_t; <br>
-   wchar_t c = L'A';  // MSVC与GCC存在差异 <br>
+   wchar_t c = L'A'; &ensp;&ensp;<b>// MSVC与GCC存在差异</b> <br>
    wchar_t szBuffer[100] = L"A string"; <br><br>
 
-   char: 默认ANSI编码(ASCII，单字节)， 不可以存储其他ansi扩展字符<br>
-   wchar: 默认Unicode编码(UTF-16)，定义时需要使用L标明，否则会因为locale出现预期之外的结果。<br>
+   char&nbsp;:&nbsp;默认ANSI编码(ASCII，单字节)， 不可以存储其他ansi扩展字符<br>
+   wchar&nbsp;:&nbsp;默认Unicode编码(UTF-16)，定义时需要使用L标明，否则会因为locale出现预期之外的结果。<br>
    如MSVC中会使用GBK编码,因为windows的locale默认是GBK。
 
 <br>
