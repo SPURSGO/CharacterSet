@@ -211,7 +211,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    (5) 释放Unicode字符串占用的内存块。<br>
    示例如下：更多细节可参考[Microsoft Docs](https://docs.microsoft.com/en-us/windows/win32/api/stringapiset/nf-stringapiset-multibytetowidechar)。
    
-    DWORD dBufSize = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, NULL, 0);
+    DWORD dBufSize = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, -1, NULL, 0);
     wchar_t* dBuf = new wchar_t[dBufSize];
     int nRet = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, dBuf, dBufSize * sizeof(wchar_t));
 
@@ -224,7 +224,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 <br>
 
-4. <b>ATL字符串转换类:</b>
+1. <b>ATL字符串转换类:</b>
 > ATL3中提供了<b>字符串转换宏</b>，如T2A、A2T等<br>
 不过使用它们需要借助本地变量,因此在使用之前需要声明USES_CONVERSION宏来声明本地变量.<br>
 而且还有个很大的缺陷:<br>
