@@ -213,7 +213,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    
     DWORD dBufSize = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, -1, NULL, 0);
     wchar_t* dBuf = new wchar_t[dBufSize];
-    int nRet = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, cbMultiByte, dBuf, dBufSize * sizeof(wchar_t));
+    int nRet = MultiByteToWideChar(CP_ACP, 0, pMultiByteStr, -1, dBuf, dBufSize * sizeof(wchar_t));
 
     { /* 使用转换后的字符串 */ }
 
