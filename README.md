@@ -214,14 +214,14 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 |UTF-8 (BOM)|GBK|	GBK|GBK|
 |UTF-8|	UTF-8	|UTF-8|	UTF-8|
 
-> GCC:
+> Linux GCC:
 
 |源代码|	内存中的字符串	|可执行文件中的字串常量|写入文件|
 |:----:|:----:|:----:|:----:|
 |GBK	|GBK|	GBK	|GBK|
-|UTF-16 BE (BOM)|	编译出错：不识别 BOM (FF FE)|	GBK|GBK|
-|UTF-16 LE (BOM) |编译出错：不识别 BOM (FE FF)|	GBK	|GBK|
-|UTF-8 (BOM)|编译出错：不识别BOM (EF BB BF)|	GBK|GBK|
+|UTF-16 BE (BOM)|	编译出错：不识别 BOM (FF FE)|	无|无|
+|UTF-16 LE (BOM) |编译出错：不识别 BOM (FE FF)|	无|无|
+|UTF-8 (BOM)|编译出错：不识别BOM (EF BB BF)|	无|无|
 |UTF-8|	UTF-8	|UTF-8|	UTF-8|
 
 ### 三、编程中经常遇见的编码问题
