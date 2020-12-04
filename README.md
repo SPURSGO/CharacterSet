@@ -188,7 +188,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    对于char类型，如果设置了<b>预处理选项“#pragma execution_character_set”</b>，编译源码时，转换为预编译所设定的执行字符集；否则使用本地Locale作为执行字符集。<br>
    对于wchar_t类型，总是使用UTF-16编码。<br>
 
-
+<br>
 
 > <b>GCC：</b><br>
 > GCC的源码字符集与执行字符集默认都是UTF-8编码，也就是说默认情况下GCC都是按UTF-8来解析源码，编译后的执行字符集也是UTF-8。<br>
@@ -204,7 +204,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    char c = 'A';<br>
    char szBuffer[100] = "A String";<br><br>
    typedef unsigned short wchar_t; <br>
-   wchar_t c = L'A'; &ensp;&ensp;<b>// MSVC与GCC存在差异</b> <br>
+   wchar_t c = L'A'; &ensp;&ensp;<b><br>
    wchar_t szBuffer[100] = L"A string"; <br><br>
 
    char&nbsp;:&nbsp;默认ANSI编码(ASCII，单字节)， 不可以存储其他ansi扩展字符<br>
@@ -213,7 +213,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 <br>
 
-2. <b>Unicode与ANSI函数：</b><br>
+1. <b>Unicode与ANSI函数：</b><br>
 > windows中的Unicode与ANSI函数：<br>
     (1) 关于字符串的函数一般都存在两种形式，一种处理ANSI字符串，另一种处理Unicode字符串。比如：<br>
     #ifdef UNICODE <br>
