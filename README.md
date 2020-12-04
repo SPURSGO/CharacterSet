@@ -181,24 +181,21 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 3. <b>源文件字符集与编译</b><br>
 不同的编译器对上述转换过程的支持不一样，如MSVC不同于GCC
-> MSVC：
-> 
-|源代码|可执行文件中的字串常量|内存中的字符串|写入的文件|
-|:----:|:----:|:----:|:----:|
-|GBK|GBK|GBK|GBK|
-|Unicode BE (BOM)|GBK|GBK|GBK|
-|Unicode LE (BOM)|GBK|GBK|GBK|
-|UTF-8 (BOM)|GBK|GBK|GBK|
-|UTF-8 |UTF-8|UTF-8|UTF-8|
+> <b>MSVC 10(VS2010)：</b><br>
+> 1. 识别“源码字符集：<br>
+> 源码文件有BOM签名的，就按BOM的编码来解析源文件；否则使用本地Locale字符集解析源文件（随系统设置而变）。<br>
+> 2. 转化“执行字符集”：<br>
+   对于char类型，如果设置了<b>预处理选项“#pragma execution_character_set”</b>，编译源码时，转换为预编译所设定的执行字符集；否则使用本地Locale作为执行字符集。<br>
+   对于wchar_t类型，总是使用UTF-16编码。<br>
 
-> GCC：
 
-|源代码|可执行文件中的字串常量|内存中的字符串|写入的文件|
-|:----:|:----:|:----:|:----:|
-|GBK|GBK|GBK|GBK|
-|Unicode BE (BOM)|编译出错：不识别 BOM (FF FE)|无|无|
-|UTF-8 (BOM)|	编译出错：不识别 BOM (EF BB BF)|无|无|
-|UTF-8 |UTF-8|UTF-8|UTF-8|
+
+> <b>GCC：</b><br>
+> GCC的源码字符集与执行字符集默认都是UTF-8编码，也就是说默认情况下GCC都是按UTF-8来解析源码，编译后的执行字符集也是UTF-8。<br>
+> 当然GCC也提供改变默认情况的编译选项（注意是编译过程中的选项，不是链接过程）。
+
+    -finput-charset=charset    用于指定源码字符集
+    -fexec-charset=charset     用于指定执行字符集
 
 <br>
 
