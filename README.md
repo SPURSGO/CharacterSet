@@ -183,11 +183,13 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 不同的编译器对上述转换过程的支持不一样，如MSVC不同于GCC
 > <b>MSVC 10(VS2010)：</b><br>
 > 1. 识别“源码字符集：<br>
-> 源码文件有BOM签名的，就按BOM的编码来解析源文件；否则使用本地Locale字符集解析源文件（随系统设置而变）。<br>
+> 源码文件有BOM签名的，就按BOM的编码来解析源文件；<br>
+> 否则使用本地Locale字符集解析源文件（随系统设置而变）。<br>
 > 2. 转化“执行字符集”：<br>
-   对于char类型，如果设置了<b>预处理选项“#pragma execution_character_set”</b>，编译源码时，转换为预编译所设定的执行字符集；如果源码字符集是UTF-8编码的，则执行字符集也是UTF-8的。
+   对于char类型(ANSI字符串)，如果设置了<b>预处理选项“#pragma execution_character_set”</b>，编译源码时，转换为预编译所设定的执行字符集；<br>
+   如果源码字符集是UTF-8编码的，则执行字符集也是UTF-8的。<br>
    其他情况则使用本地Locale作为执行字符集。<br>
-   对于wchar_t类型，总是使用UTF-16编码。<br>
+   对于wchar_t类型(宽字符串)，总是使用UTF-16编码。<br>
 
 <br>
 
@@ -224,7 +226,8 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
     #endif <br><br>
    (2) 在windows vista中， CreateWindowExA就只是作为一个转换层，它就负责分配内存，将ANSI字符串转换为Unicode字符串。<br>
    然后再调用CreateWindowExW，向其传递转换后的Unicode字符串进行处理。<br><br>
-   (3) 现在，Microsoft逐渐开始倾向于某些函数只提供Unicode版本。如：ReadDirectoryChangesW和CreateProcessWithLogonW。
+   (3) 现在，Microsoft逐渐开始倾向于某些函数只提供Unicode版本。如：ReadDirectoryChangesW和CreateProcessWithLogonW。<br>
+   由上面几点可以看出来，我们现在更应该使用Unicode函数，而非ANSI函数。所以在VS项目工程中，应当配置选项“使用Unicode字符集”。从而让编译器增加宏定义——UNICODE。
 <br>
 
 > C运行库中的Unicode与ANSI函数：<br>
