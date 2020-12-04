@@ -204,7 +204,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
    char c = 'A';<br>
    char szBuffer[100] = "A String";<br><br>
    typedef unsigned short wchar_t; <br>
-   wchar_t c = L'A'; &ensp;&ensp;<b><br>
+   wchar_t c = L'A'; &ensp;&ensp;<br>
    wchar_t szBuffer[100] = L"A string"; <br><br>
 
    char&nbsp;:&nbsp;默认ANSI编码(ASCII，单字节)， 不可以存储其他ansi扩展字符<br>
