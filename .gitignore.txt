@@ -1,0 +1,2 @@
+CharSet_Test/.vs
+CharSet_Test/Debug
