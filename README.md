@@ -150,7 +150,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 
 > <b>常见字符集的应用场景</b><br>
 > UTF-8：主要用于网络传输，数据库存储。<br>
-> UTF-16：一般用于程序内部逻辑处理，比如关于字符串的处理算法，相对于UTF-8的字节流，会更容易定位到某个要处理的字符。<br>
+> UTF-16：一般用于程序内部逻辑处理。如宽字符串(wchar_t)采用UTF-16编码。且windows编程中，也极力推荐使用UTF-16编码的宽字符串。这样也可以避免windows内部做一系列字符串的转换。从而可以做到，我们自己的字符串，我们自己做主。<br>
 > GBK：纯中文数据环境下，使用GBK进行存储，数据传输相对于UTF-8会更好。这也是windows系统的默认locale。<br>
 
 <br>
@@ -322,18 +322,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
     
 <br>
 
-5. <b>如何判断字符串当前编码，如何判断是否存在中文:</b>
-> <b>IsTextUnicode</b></br>
-  该函数可以<b>有助于</b>分辨文本的编码格式。它使用一系列统计性和确定性方法来猜测缓冲区的内容。所以可能返回错误的结果。<br>
-  它的函数原型是：<br>
-  BOOL &nbsp; IsTextUnicode(const &nbsp;VOID &nbsp;*pvBuffer, &nbsp;int &nbsp; size, &nbsp;LPINT &nbsp;[lpiResult](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-istextunicode));<br>
-  (1) pvBuffer参数指向要测试的缓冲区的地址。<br>
-  (2) size参数指定pvBuffer缓冲区的字节数。测试的字节数越多越准确<br>
-  (3) [lpiResult](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-istextunicode)是一个整数的地址，在调用IsTextUnicode之前必须初始化这个整数，从而指出希望执行哪些测试。如果传入NULL，则将执行所有测试。<br>
-   返回值：如果认为测试缓冲区包含的是Unicode文本，就返回TRUE。否则返回FALSE。<br>
-
-<br>
-
+5. <b>如何判断是否存在中文:</b>
 > <b>字符串中是否存在中文</b><br>
 > 如果只有英文字母和汉字组成的字符串，那么直接判断单字节是否大于0x80即可。<br>
 > 如果含有多国语言，则需要查看相应编码格式的中文编码范围。
