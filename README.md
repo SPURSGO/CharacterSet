@@ -186,8 +186,7 @@ GB18030具体字符的编码值及编码规则可查看[此工具网站](https:/
 > 源码文件有BOM签名的，就按BOM的编码来解析源文件；<br>
 > 否则使用本地Locale字符集解析源文件（随系统设置而变）。<br>
 > 2. 转化“执行字符集”：<br>
-   对于<b>char类型(ANSI字符串)</b>，如果设置了<b>预处理选项“#pragma execution_character_set”</b>，编译源码时，转换为预编译所设定的执行字符集；<br>
-   <br>
+   对于<b>char类型(ANSI字符串)</b>，如果设置了<b>预处理选项“#pragma execution_character_set”</b>，编译源码时，转换为预编译所设定的执行字符集；<br><br>
    如果源码字符集是UTF-8编码的，则执行字符集也是UTF-8的。<br><br>
    其他情况则使用本地Locale作为执行字符集。<br>
    对于<b>wchar_t类型(宽字符串)</b>，总是使用UTF-16编码。<br>
